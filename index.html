@@ -168,13 +168,13 @@
     <!-- Owl hero -->
     <div class="owl-scene">
       <svg width="120" height="135" viewBox="0 0 130 155" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="65" cy="148" rx="52" ry="7" fill="#1a2744" opacity=".25"/>
+        <ellipse cx="65" cy="150" rx="52" ry="7" fill="#1a2744" opacity=".25"/>
         <!-- Body -->
         <ellipse cx="65" cy="100" rx="38" ry="42" fill="#f97316"/>
         <ellipse cx="65" cy="112" rx="27" ry="29" fill="#ffe0c0"/>
-        <!-- Wings -->
+        <!-- Wings: left tilts -8 deg, right mirrors at x=65 tilting +8 deg -->
         <g id="owl-wl"><ellipse cx="33" cy="105" rx="14" ry="26" fill="#d96010" transform="rotate(-8 33 105)"/></g>
-        <g id="owl-wr" style="transform-origin:65px 105px;transform:scaleX(-1)"><ellipse cx="33" cy="105" rx="14" ry="26" fill="#d96010" transform="rotate(-8 33 105)"/></g>
+        <g id="owl-wr"><ellipse cx="97" cy="105" rx="14" ry="26" fill="#d96010" transform="rotate(8 97 105)"/></g>
         <!-- Ear tufts -->
         <polygon points="45,62 40,44 52,58" fill="#f97316"/>
         <polygon points="85,62 90,44 78,58" fill="#f97316"/>
@@ -192,20 +192,27 @@
           <circle cx="56" cy="67" r="2.5" fill="white" opacity=".9"/>
           <circle cx="80" cy="67" r="2.5" fill="white" opacity=".9"/>
         </g>
-        <!-- Beak -->
-        <polygon points="65,80 59,88 71,88" fill="#e07010"/>
+        <!-- Beak: inverted triangle, point at bottom, elongated -->
+        <polygon points="59,78 71,78 65,93" fill="#e07010"/>
+        <line x1="65" y1="78" x2="65" y2="93" stroke="#c05808" stroke-width="1" opacity=".5"/>
         <!-- Chest feathers -->
         <ellipse cx="55" cy="112" rx="8" ry="5" fill="#ffd4a0" opacity=".6" transform="rotate(-15 55 112)"/>
         <ellipse cx="65" cy="116" rx="8" ry="5" fill="#ffd4a0" opacity=".6"/>
         <ellipse cx="75" cy="112" rx="8" ry="5" fill="#ffd4a0" opacity=".6" transform="rotate(15 75 112)"/>
-        <!-- Feet -->
-        <path d="M52 138 Q50 132 48 130 M52 138 Q52 132 50 129 M52 138 Q54 132 56 130" stroke="#e07010" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        <path d="M78 138 Q76 132 74 130 M78 138 Q78 132 76 129 M78 138 Q80 132 82 130" stroke="#e07010" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        <!-- Grad cap -->
-        <rect x="44" y="42" width="42" height="5" rx="2" fill="#1a3a5c" opacity=".9"/>
-        <polygon points="65,32 44,44 86,44" fill="#1a3a5c" opacity=".9"/>
-        <line x1="86" y1="44" x2="92" y2="54" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="92" cy="56" r="3.5" fill="#f97316"/>
+        <!-- Left leg -->
+        <line x1="53" y1="139" x2="53" y2="131" stroke="#c05808" stroke-width="3" stroke-linecap="round"/>
+        <!-- Left talons: back talon, two middle, front talon -->
+        <path d="M53,139 Q45,140 41,143" stroke="#c05808" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M53,139 Q49,143 47,148" stroke="#c05808" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M53,139 Q54,144 54,149" stroke="#c05808" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M53,139 Q58,143 61,147" stroke="#c05808" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <!-- Right leg -->
+        <line x1="77" y1="139" x2="77" y2="131" stroke="#c05808" stroke-width="3" stroke-linecap="round"/>
+        <!-- Right talons (mirrored) -->
+        <path d="M77,139 Q85,140 89,143" stroke="#c05808" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M77,139 Q81,143 83,148" stroke="#c05808" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M77,139 Q76,144 76,149" stroke="#c05808" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M77,139 Q72,143 69,147" stroke="#c05808" stroke-width="2.5" stroke-linecap="round" fill="none"/>
       </svg>
     </div>
   </div>
@@ -469,15 +476,24 @@ const progressBar = document.getElementById('progressBar');
 function owlAvatar(){
   return `<div class="avatar">
     <svg viewBox="0 0 36 36" width="36" height="36">
-      <circle cx="18" cy="18" r="18" fill="#2d4a8a"/>
-      <ellipse cx="18" cy="21" rx="10" ry="11" fill="#f97316"/>
-      <circle cx="13" cy="18" r="3.5" fill="#1a3a5c"/>
-      <circle cx="23" cy="18" r="3.5" fill="#1a3a5c"/>
-      <circle cx="13" cy="18" r="2"   fill="#3cb8e0"/>
-      <circle cx="23" cy="18" r="2"   fill="#3cb8e0"/>
-      <circle cx="14" cy="17" r="1.2" fill="white"/>
-      <circle cx="24" cy="17" r="1.2" fill="white"/>
-      <polygon points="18,22 15,26 21,26" fill="#e07010"/>
+      <!-- Ear tufts -->
+      <polygon points="12,10 10,4 15,9"  fill="#f97316"/>
+      <polygon points="24,10 26,4 21,9"  fill="#f97316"/>
+      <!-- Head -->
+      <circle cx="18" cy="17" r="13" fill="#f97316"/>
+      <!-- Facial disc -->
+      <ellipse cx="18" cy="19" rx="10" ry="9" fill="#ffe0c0"/>
+      <!-- Eyes -->
+      <circle cx="13" cy="16" r="4" fill="#1a3a5c"/>
+      <circle cx="23" cy="16" r="4" fill="#1a3a5c"/>
+      <circle cx="13" cy="16" r="2.8" fill="#3cb8e0"/>
+      <circle cx="23" cy="16" r="2.8" fill="#3cb8e0"/>
+      <circle cx="13" cy="16" r="1.5" fill="#0d1f35"/>
+      <circle cx="23" cy="16" r="1.5" fill="#0d1f35"/>
+      <circle cx="14" cy="15" r="0.9" fill="white" opacity=".9"/>
+      <circle cx="24" cy="15" r="0.9" fill="white" opacity=".9"/>
+      <!-- Beak: inverted triangle, point down -->
+      <polygon points="15,20 21,20 18,25" fill="#e07010"/>
     </svg></div>`;
 }
 
